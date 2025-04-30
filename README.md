@@ -51,7 +51,7 @@ Day 5: Polish program and test with different inputs.
 
 # Tools and Resources Used-
 
-TVMaze API Docs
-Python and the requests library
+[TVMaze API Docs](https://support.techsmart.codes/hc/en-us/articles/1500004956221-5-4-Web-APIs-Teacher-Guide#h_01J04HQ4F267D1VRB7BFJBGG5Z)
+Python and the requests library 
 TechSmart platform to run code
 
