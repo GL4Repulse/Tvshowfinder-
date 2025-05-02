@@ -1,79 +1,116 @@
-# TV Show Finder
+## TV Show Finder
 
-# Purpose / Problem Statement
-The TV Show Finder is a Python-based tool that allows users to search for TV shows using a keyword—such as a title, tag, or year. It addresses the common problem of browsing multiple cluttered websites just to find basic show info. Whether you're trying to recall a show from 2006 or looking for something in a specific genre, this tool simplifies the search process.
+**Find TV shows fast using real-time data.**
 
-# Target Audience
-This program is designed for:
+---
 
-TV lovers and binge-watchers
+### ✅ Purpose / Problem Statement
 
-Students looking for quick entertainment
+Scrolling through endless streaming platforms just to find a show from 2006? Yeah, no thanks. The **TV Show Finder** is a Python-based console tool that allows users to search TV shows by title, tag, or even year—all in one place. It cuts through the clutter of bloated websites and delivers clean info, fast.
 
-Young adults who want fast, clean access to show data without navigating bloated streaming services or search engines
+---
 
-# Solution + Limitations
+###  Target Audience
 
-# Solution:
+* Binge-watchers who want quick access to TV data
+* Students needing a mental break (hello, study sessions!)
+* Anyone tired of streaming service overload
 
-Utilizes the TVMaze API to fetch real-time show data
+---
 
-Displays name, runtime, status, genre, premiere date, type, and summary
+### Solution + Limitations
 
-User-friendly error handling for no results or invalid input
+**Solution:**
 
-# Limitations:
+* Uses the TVMaze API to pull real-time TV show info
+* Displays up to 3 show results with:
 
-Displays only up to 3 shows
+  * Name, Runtime, Status, Genre, Premiered Date, Type, and Summary
+* Friendly error messages for invalid or empty results
 
-Cannot filter by multiple tags, ratings, or platforms
+**Limitations:**
 
-No clickable interface—currently runs in the console
+* Only shows 3 results at a time
+* Can't filter by multiple tags, ratings, or streaming platforms
+* Console-based (no web interface yet)
+* Doesn’t store search history or suggest related shows
 
-Does not save search history or suggest related shows
+---
 
-# Key Features
-Search Input: User enters a keyword, title, or year
+### Key Features
 
-API Request: Sends query to TVMaze API
+* **User Input**: Accepts flexible inputs like show title, tags, or year
+* **API Integration**: Sends request to TVMaze
+* **Result Display**: Shows details in a clear format
+* **Error Handling**: try-except blocks to prevent crashes or blank data
 
-Data Display: Outputs details like name, genre, and summary
+---
 
-Error Handling: Friendly messages if no results or failures occur
+### Technical Challenges
 
-# Technical Challenges + # Future Plans
+* Parsing JSON data from an unfamiliar API
+* Handling unexpected or incomplete user inputs
+* Ensuring the app doesn’t break with invalid keywords
 
-# Challenges:
+---
 
-Learning how to integrate and parse data from an external API
+### Future Plans
 
-Handling different input types (titles vs. years vs. tags)
+* Add filters (genre, rating, network)
+* Build a web version using Flask + HTML/CSS
+* Add functionality to favorite or bookmark shows
+* Show trailers and where to stream the show
 
-Avoiding crashes with incomplete or empty data
+---
 
-# Future Plans:
+### Project Timeline
 
-Add filters (e.g. genre, network, rating)
+| Day   | Task                                       |
+| ----- | ------------------------------------------ |
+| Day 1 | Research APIs and set up request library   |
+| Day 2 | Build core search and query functionality  |
+| Day 3 | Add detailed data output (genre, summary)  |
+| Day 4 | Add error handling and user input features |
+| Day 5 | Final polish, testing, and documentation   |
 
-Build a web interface with Flask and HTML/CSS
+---
 
-Let users save or favorite shows
+###  Tools & Resources
 
-Display trailers and streaming availability
+* [TVMaze API](https://www.tvmaze.com/api)
+* Python + `requests` library
+* TechSmart platform
 
-# Project Timeline
-Day	Task
-Day 1	Research APIs and set up requests library
-Day 2	Build search functionality and basic output
-Day 3	Add detailed show info (genre, summary, etc.)
-Day 4	Implement error handling and flexible input
-Day 5	Final polish, testing, and documentation
+---
 
-# Tools & Resources
-[TVMaze API](https://support.techsmart.codes/hc/en-us/articles/1500004956221-5-4-Web-APIs-Teacher-Guide#h_01J04HQ4F267D1VRB7BFJBGG5Z)
+### 🔍 Sample Code Snippet
 
-Python + requests library
+Here’s a peek at how the program pulls and displays show data using the TVMaze API:
 
-TechSmart platform (for code execution)
+```python
+import requests  # Making API calls
 
+API_URL = "https://api.tvmaze.com"
+path = "/search/shows"
 
+print("Welcome to the TV Show Search!")
+try:
+    search = input("Enter a title, tag, or year to search by: ").lower()
+    params = { "q": search }
+    response = requests.get(API_URL + path, params=params)
+    results = response.json()
+
+    for i in range(3):
+        print("Name:", results[i]["show"]["name"])
+        print("Runtime:", results[i]["show"]["runtime"])
+        print("Status:", results[i]["show"]["status"])
+        print("Genres:", results[i]["show"]["genres"])
+        print("Premiered:", results[i]["show"]["premiered"])
+        print("Type:", results[i]["show"]["type"])
+        print("Summary:", results[i]["show"]["summary"])
+        print()
+except IndexError:
+    print("No results found. Try a different keyword.")
+except Exception:
+    print("Oops! Something went wrong. Please try again.")
+```
