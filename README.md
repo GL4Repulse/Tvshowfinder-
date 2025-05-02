@@ -83,7 +83,7 @@ Scrolling through endless streaming platforms just to find a show from 2006? Yea
 
 ---
 
-### 🔍 Sample Code Snippet
+### Sample Code Snippet
 
 Here’s a peek at how the program pulls and displays show data using the TVMaze API:
 
